@@ -52,6 +52,7 @@ margin:auto
     text-transform: uppercase;
     background: url(title.jpg) 0 0 / cover no-repeat;
     color: #de466c;
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
