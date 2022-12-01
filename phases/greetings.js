@@ -1,4 +1,4 @@
-import {FuzzySet} from '/fuzzyset.js';
+import {FuzzySet} from 'fuzzyset.js';
 export var list = FuzzySet([
 'გამარჯობა',
 'გამარჯობა ირაკლი',
