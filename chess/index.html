@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ka">
+    <head>
+        <meta charset="utf-8">
+
+        <title>IrakliBot Chess AI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="IrakliBot Chess AI">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="https://kit.fontawesome.com/5b14db5f0b.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script defer src="js/chessboard.js"></script>
+        <script defer src="js/chess.js"></script></script>
+        <script defer src="js/main.js"></script>
+    </head>
+    <body> 
+        <main>
+            <div class="container my-3">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h1 class="title" style="text-align:left; padding-bottom:20px">IrakliBot Chess</h1>
+                        <p>ლორემ იპსუმ გამასხარავებული მივკვლიე ძალადობას მადლობელი, პოზებში საწყობები ეხსენებინათ ბეჯითად მაწონიცა უხარიათ.  მადლობელი, პოზებში საწყობები ეხსენებინათ ბეჯითად მაწონიცა უხარიათ. 
+                        </p>
+                        <div class="row my-3 text-align-center">
+                            <div class="col-md-12" style="margin-top:25px;margin-bottom:25px">
+                                <p><span id="advantageColor">თანაბარი</span> პოზიცია
+                                    (+<span id="advantageNumber">0</span>).</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-animated" 
+                                        role="progressbar" aria-valuenow="0" style="width: 50%"
+                                        aria-valuemin="-2000" aria-valuemax="4000" id='advantageBar'>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row my-3 text-align-center">
+                            <div class="col-md-12">
+                                <h2>სტატუსი</h2>
+                                <p><span id="status">არანაირი არაფერი</span></p>
+                            </div>
+                        </div>
+                        <button class="btn" id="undoBtn" style="background:#3e678b;color:white" >სვლის დაბრუნება</button>      
+                        <button class="btn" id="resetBtn" style="background:#9b1003;color:white" >თავიდან დაწყება</button>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="myBoard"></div>
+                        <div class="row justify-content-center" style="padding-top:20px">
+                            <span id="position-count">0</span> &nbsp გაანალიზებული პოზიცია &nbsp <span id="time">0 </span><span style="padding:4px"> </span> წამში.
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
