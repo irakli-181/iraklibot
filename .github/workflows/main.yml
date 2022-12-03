@@ -30,9 +30,9 @@ jobs:
 
           
           # will put all file under this path
-          local_path: /domains/iraklibot.practicedomain.xyz/public_html/ # default is ./*
+          local_path: /home/irakli/domains/iraklibot.practicedomain.xyz/public_html # default is ./*
           # files will copy to under remote_path
-          remote_path: /
+#           remote_path: /
           
           # sftp args
           args: '-o ConnectTimeout=5'
