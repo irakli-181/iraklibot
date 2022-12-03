@@ -34,10 +34,11 @@
 }
 
 #myBoard {
-    max-width: 100%;
+    max-width: 110%;
     height: auto;
-    overflow: scroll;
-    display:inline
+    /* overflow: scroll; */
+    display:block;
+    width:100%
 }
 
 .highlight-white {
