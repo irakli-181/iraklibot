@@ -5,7 +5,7 @@
 }
 
 * {
-  font-family: "arial", sans-serif!important;
+  font-family: "arial", sans-serif !important;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -21,44 +21,43 @@
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
-  border-radius:5px;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3E678B;
-  border-radius:5px;
+  background: #3e678b;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #284158;
 }
 
-
-body{
-  width:100vw!important;
-  margin:0;
-  padding:0 ;
-  overflow-x:hidden;
+body {
+  width: 100vw !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
-@media(max-width:1000px){
-  .title{
-      font-size:60px!important 
- }
- ::-webkit-scrollbar{
-  display:none!important
- }
- .chat{
-  overflow:scroll!important;
- }
+@media (max-width: 1000px) {
+  .title {
+    font-size: 60px !important;
+  }
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+  .chat {
+    overflow: scroll !important;
+  }
 }
 body {
   font-size: 13px;
   background-color: #fafafa;
 }
 .container {
-  max-width: 600px!important;
-  padding:20px;
-  margin:auto 
+  max-width: 600px !important;
+  padding: 20px;
+  margin: auto;
 }
 .title {
   font-weight: bold;
@@ -66,9 +65,9 @@ body {
   text-align: center;
   font-size: 81px;
   font-weight: 800;
-  margin:0;
-  text-transform:uppercase;
-  background: -webkit-linear-gradient(45deg, #2A2A72, #51A3A3 100%);
+  margin: 0;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(45deg, #2a2a72, #51a3a3 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -78,10 +77,10 @@ body {
   height: 300px;
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 4px 5px 41px -2px rgba(202,202,202,0.75);
-  -moz-box-shadow: 4px 5px 41px -2px rgba(202,202,202,0.75);
-  box-shadow: 4px 5px 41px -2px rgba(202,202,202,0.75);
-  overflow:hidden;
+  -webkit-box-shadow: 4px 5px 41px -2px rgba(202, 202, 202, 0.75);
+  -moz-box-shadow: 4px 5px 41px -2px rgba(202, 202, 202, 0.75);
+  box-shadow: 4px 5px 41px -2px rgba(202, 202, 202, 0.75);
+  overflow: hidden;
 }
 
 .chat:hover {
@@ -96,10 +95,10 @@ body {
   font-weight: bold;
 }
 .chat .you {
-  color: #2A2A72;
+  color: #2a2a72;
 }
 .chat .other {
-  color: #51A3A3;
+  color: #51a3a3;
 }
 .busy {
   position: absolute;
@@ -111,54 +110,50 @@ body {
 .fuzzytext {
   display: flex;
   gap: 25px;
-  height:25px;
-  text-align:center;
+  height: 25px;
+  text-align: center;
   justify-content: center;
-  flex-direction:row-reverse 
+  flex-direction: row-reverse;
 }
 .foreach:first-child {
   color: #162721;
 }
 .input #addUserForm {
   margin-top: 40px;
-  display:flex;
+  display: flex;
 }
 .input .input1 {
   vertical-align: top;
   float: left;
   padding: 15px;
-  border:none;
-  background:white;
+  border: none;
+  background: white;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  width:75%;
-  -webkit-box-shadow: 3px 3px 9px 4px rgba(230,230,230,0.75) inset;
-  -moz-box-shadow: 3px 3px 9px 4px rgba(230,230,230,0.75) inset;
-  box-shadow: 3px 3px 9px 4px rgba(230,230,230,0.75) inset;
+  width: 75%;
+  -webkit-box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
+  -moz-box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
+  box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
 }
 .input .submitbtn {
   font-weight: bold;
-  background: #3E678B;
-  border:none;
+  background: #3e678b;
+  border: none;
   color: white;
   text-decoration: none;
-  width:25%;
+  width: 25%;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-  text-align:center;
-  padding:15px;
-  transition: 0.5s 
+  text-align: center;
+  padding: 15px;
+  transition: 0.5s;
 }
-input:focus{
+input:focus {
   outline: none;
 }
 .input .submitbtn:hover {
   cursor: pointer;
-  border:none;
-  background:#284158;
-  transition: 0.5s ;
+  border: none;
+  background: #284158;
+  transition: 0.5s;
 }
-
-
-
-

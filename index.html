@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="ka">
-   <head>
-      <meta charset="utf-8">
-      <title>IrakliBot</title>
-      <meta name="description" content="Talk with digital version of Irakli">
-      <link rel="icon" type="image/x-icon" href="./favicon.png">
-      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-      <link rel="stylesheet" href="./style.css">
-   </head>
-   <body>
-      <div class="container">
-         <h1 class="title">IrakliBot</h1>
-         <p class="fuzzytext"></p>
-         <div class="chat" id="chatid"></div>
-         <div class="busy"></div>
-         <div class="input">
-            <form id="addUserForm">
-               <input name="field1" type="text" placeholder="მესაუბრე..." class="input1" />
-               <input type="submit" name="submit" value="გაგზავნა" class="submitbtn">
-            </form>
-         </div>
+  <head>
+    <meta charset="utf-8" />
+    <title>IrakliBot</title>
+    <meta name="description" content="Talk with digital version of Irakli" />
+    <link rel="icon" type="image/x-icon" href="./favicon.png" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">IrakliBot</h1>
+      <p class="fuzzytext"></p>
+      <div class="chat" id="chatid"></div>
+      <div class="busy"></div>
+      <div class="input">
+        <form id="addUserForm">
+          <input
+            name="field1"
+            type="text"
+            placeholder="მესაუბრე..."
+            class="input1"
+          />
+          <input
+            type="submit"
+            name="submit"
+            value="გაგზავნა"
+            class="submitbtn"
+          />
+        </form>
       </div>
-   </body>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-   <script src="./chatbot.js" type="module"></script>
-   <script src="./platform.js"></script>
-   </html>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="./chatbot.js" type="module"></script>
+  <script src="./platform.js"></script>
+</html>

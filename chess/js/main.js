@@ -8,13 +8,13 @@
 var STACK_SIZE = 100; // maximum size of undo stack
 
 var board = null;
-var $board = $('#myBoard');
+var $board = $("#myBoard");
 var game = new Chess();
 var globalSum = 0; // always from black's perspective. Negative for white's perspective.
-var whiteSquareGrey = 'rgba(71, 134, 151, 0.75)';
-var blackSquareGrey = 'rgba(71, 134, 151, 1)';
+var whiteSquareGrey = "rgba(71, 134, 151, 0.75)";
+var blackSquareGrey = "rgba(71, 134, 151, 1)";
 
-var squareClass = 'square-55d63';
+var squareClass = "square-55d63";
 var squareToHighlight = null;
 var colorToHighlight = null;
 var positionCount;
@@ -22,14 +22,14 @@ var movecount = 1;
 
 var config = {
   draggable: true,
-  position: 'start',
+  position: "start",
   onDragStart: onDragStart,
   onDrop: onDrop,
   onMouseoutSquare: onMouseoutSquare,
   onMouseoverSquare: onMouseoverSquare,
   onSnapEnd: onSnapEnd,
 };
-board = Chessboard('myBoard', config);
+board = Chessboard("myBoard", config);
 
 timer = null;
 
@@ -109,13 +109,13 @@ var pst_w = {
   ],
 };
 var pst_b = {
-  p: pst_w['p'].slice().reverse(),
-  n: pst_w['n'].slice().reverse(),
-  b: pst_w['b'].slice().reverse(),
-  r: pst_w['r'].slice().reverse(),
-  q: pst_w['q'].slice().reverse(),
-  k: pst_w['k'].slice().reverse(),
-  k_e: pst_w['k_e'].slice().reverse(),
+  p: pst_w["p"].slice().reverse(),
+  n: pst_w["n"].slice().reverse(),
+  b: pst_w["b"].slice().reverse(),
+  r: pst_w["r"].slice().reverse(),
+  q: pst_w["q"].slice().reverse(),
+  k: pst_w["k"].slice().reverse(),
+  k_e: pst_w["k_e"].slice().reverse(),
 };
 
 var pstOpponent = { w: pst_b, b: pst_w };
@@ -126,9 +126,7 @@ var pstSelf = { w: pst_w, b: pst_b };
  * using the material weights and piece square tables.
  */
 function evaluateBoard(game, move, prevSum, color) {
-
   if (game.in_checkmate()) {
-
     // Opponent is in checkmate (good for us)
     if (move.color === color) {
       return 10 ** 10;
@@ -139,8 +137,7 @@ function evaluateBoard(game, move, prevSum, color) {
     }
   }
 
-  if (game.in_draw() || game.in_threefold_repetition() || game.in_stalemate())
-  {
+  if (game.in_draw() || game.in_threefold_repetition() || game.in_stalemate()) {
     return 0;
   }
 
@@ -157,17 +154,17 @@ function evaluateBoard(game, move, prevSum, color) {
 
   var from = [
     8 - parseInt(move.from[1]),
-    move.from.charCodeAt(0) - 'a'.charCodeAt(0),
+    move.from.charCodeAt(0) - "a".charCodeAt(0),
   ];
   var to = [
     8 - parseInt(move.to[1]),
-    move.to.charCodeAt(0) - 'a'.charCodeAt(0),
+    move.to.charCodeAt(0) - "a".charCodeAt(0),
   ];
 
   // Change endgame behavior for kings
   if (prevSum < -1500) {
-    if (move.piece === 'k') {
-      move.piece = 'k_e';
+    if (move.piece === "k") {
+      move.piece = "k_e";
     }
     // Kings can never be captured
     // else if (move.captured === 'k') {
@@ -175,7 +172,7 @@ function evaluateBoard(game, move, prevSum, color) {
     // }
   }
 
-  if ('captured' in move) {
+  if ("captured" in move) {
     // Opponent piece was captured (good for us)
     if (move.color === color) {
       prevSum +=
@@ -190,9 +187,9 @@ function evaluateBoard(game, move, prevSum, color) {
     }
   }
 
-  if (move.flags.includes('p')) {
+  if (move.flags.includes("p")) {
     // NOTE: promote to queen for simplicity
-    move.promotion = 'q';
+    move.promotion = "q";
 
     // Our piece was promoted (good for us)
     if (move.color === color) {
@@ -297,7 +294,6 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
       }
     }
 
-
     // Alpha-beta pruning
     if (alpha >= beta) {
       break;
@@ -309,26 +305,24 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
   } else {
     return [bestMove, minValue];
   }
-
-
 }
 
 function checkStatus(color) {
   if (game.in_checkmate()) {
-    $('#status').html(`<b>შამათი</b>`);
+    $("#status").html(`<b>შამათი</b>`);
   } else if (game.insufficient_material()) {
-    $('#status').html(`ყაიმი`);
+    $("#status").html(`ყაიმი`);
   } else if (game.in_threefold_repetition()) {
-    $('#status').html(`ყაიმი`);
+    $("#status").html(`ყაიმი`);
   } else if (game.in_stalemate()) {
-    $('#status').html(`ყაიმი, პატი`);
+    $("#status").html(`ყაიმი, პატი`);
   } else if (game.in_draw()) {
-    $('#status').html(`ყაიმი`);
+    $("#status").html(`ყაიმი`);
   } else if (game.in_check()) {
-    $('#status').html(`<b>ქიში</b>`);
+    $("#status").html(`<b>ქიში</b>`);
     return false;
   } else {
-    $('#status').html(`არანაირი არაფერი`);
+    $("#status").html(`არანაირი არაფერი`);
     return false;
   }
   return true;
@@ -336,17 +330,17 @@ function checkStatus(color) {
 
 function updateAdvantage() {
   if (globalSum > 0) {
-    $('#advantageColor').text('შავების');
-    $('#advantageNumber').text(globalSum);
+    $("#advantageColor").text("შავების");
+    $("#advantageNumber").text(globalSum);
   } else if (globalSum < 0) {
-    $('#advantageColor').text('თეთრების');
-    $('#advantageNumber').text(-globalSum);
+    $("#advantageColor").text("თეთრების");
+    $("#advantageNumber").text(-globalSum);
   } else {
-    $('#advantageColor').text('თანაბარი');
-    $('#advantageNumber').text(globalSum);
+    $("#advantageColor").text("თანაბარი");
+    $("#advantageNumber").text(globalSum);
   }
-  $('#advantageBar').attr({
-    'aria-valuenow': `${-globalSum}`,
+  $("#advantageBar").attr({
+    "aria-valuenow": `${-globalSum}`,
     style: `width: ${((globalSum + 10) / 20) * 100}%`,
   });
 }
@@ -356,13 +350,13 @@ function updateAdvantage() {
  */
 function getBestMove(game, color, currSum) {
   positionCount = 0;
-  var randnumone = Array(1,2,3);
-  var randnumtwo = Array(2,3,3,3,3,3);
+  var randnumone = Array(1, 2, 3);
+  var randnumtwo = Array(2, 3, 3, 3, 3, 3);
   if (movecount == 1) {
     var depth = Math.floor(Math.random() * 4) + 1;
-  } else if(movecount > 1 && movecount < 18) {
-    var depth = randnumtwo[Math.floor(Math.random()*randnumtwo.length)];
-  }else{
+  } else if (movecount > 1 && movecount < 18) {
+    var depth = randnumtwo[Math.floor(Math.random() * randnumtwo.length)];
+  } else {
     var depth = 3;
   }
 
@@ -377,62 +371,59 @@ function getBestMove(game, color, currSum) {
     color
   );
   var d2 = new Date().getTime();
-  var moveTime = (d2 - d)/10;
+  var moveTime = (d2 - d) / 10;
   console.log(moveTime);
   var positionsPerS = (positionCount * 1000) / moveTime;
 
-  $('#position-count').text(positionCount);
-  $('#time').text(moveTime / 100);
-  $('#positions-per-s').text(Math.round(positionsPerS));
-  movecount= movecount+1
+  $("#position-count").text(positionCount);
+  $("#time").text(moveTime / 100);
+  $("#positions-per-s").text(Math.round(positionsPerS));
+  movecount = movecount + 1;
   console.log(bestMove);
   return [bestMove];
 }
-
-
-
 
 /*
  * Makes the best legal move for the given color.
  */
 function makeBestMove(color) {
-  console.log(movecount)
-  if (color === 'b') {
+  console.log(movecount);
+  if (color === "b") {
     var move = getBestMove(game, color, globalSum)[0];
   } else {
     var move = getBestMove(game, color, -globalSum)[0];
   }
 
-  globalSum = Math.round(evaluateBoard(game, move, globalSum, 'b'))/100;
+  globalSum = Math.round(evaluateBoard(game, move, globalSum, "b")) / 100;
   updateAdvantage();
 
   game.move(move);
   board.position(game.fen());
 
-  if (color === 'b') {
-    checkStatus('black');
+  if (color === "b") {
+    checkStatus("black");
 
     // Highlight black move
-    $board.find('.' + squareClass).removeClass('highlight-black');
-    $board.find('.square-' + move.from).addClass('highlight-black');
+    $board.find("." + squareClass).removeClass("highlight-black");
+    $board.find(".square-" + move.from).addClass("highlight-black");
     squareToHighlight = move.to;
-    colorToHighlight = 'black';
+    colorToHighlight = "black";
 
     $board
-      .find('.square-' + squareToHighlight)
-      .addClass('highlight-' + colorToHighlight);
+      .find(".square-" + squareToHighlight)
+      .addClass("highlight-" + colorToHighlight);
   } else {
-    checkStatus('white');
+    checkStatus("white");
 
     // Highlight white move
-    $board.find('.' + squareClass).removeClass('highlight-white');
-    $board.find('.square-' + move.from).addClass('highlight-white');
+    $board.find("." + squareClass).removeClass("highlight-white");
+    $board.find(".square-" + move.from).addClass("highlight-white");
     squareToHighlight = move.to;
-    colorToHighlight = 'white';
+    colorToHighlight = "white";
 
     $board
-      .find('.square-' + squareToHighlight)
-      .addClass('highlight-' + colorToHighlight);
+      .find(".square-" + squareToHighlight)
+      .addClass("highlight-" + colorToHighlight);
   }
 }
 /*
@@ -441,12 +432,12 @@ function makeBestMove(color) {
 function reset() {
   game.reset();
   globalSum = 0;
-  $board.find('.' + squareClass).removeClass('highlight-white');
-  $board.find('.' + squareClass).removeClass('highlight-black');
-  $board.find('.' + squareClass).removeClass('highlight-hint');
+  $board.find("." + squareClass).removeClass("highlight-white");
+  $board.find("." + squareClass).removeClass("highlight-black");
+  $board.find("." + squareClass).removeClass("highlight-hint");
   board.position(game.fen());
-  $('#advantageColor').text('თანაბარი');
-  $('#advantageNumber').text(globalSum);
+  $("#advantageColor").text("თანაბარი");
+  $("#advantageNumber").text(globalSum);
 
   // Kill the Computer vs. Computer callback
   if (timer) {
@@ -458,41 +449,41 @@ function reset() {
 /*
  * Event listeners for various buttons.
  */
-$('#ruyLopezBtn').on('click', function () {
+$("#ruyLopezBtn").on("click", function () {
   reset();
   game.load(
-    'r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1'
+    "r1bqkbnr/pppp1ppp/2n5/1B2p3/4P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1"
   );
   board.position(game.fen());
   window.setTimeout(function () {
-    makeBestMove('b');
+    makeBestMove("b");
   }, 250);
 });
-$('#italianGameBtn').on('click', function () {
+$("#italianGameBtn").on("click", function () {
   reset();
   game.load(
-    'r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1'
+    "r1bqkbnr/pppp1ppp/2n5/4p3/2B1P3/5N2/PPPP1PPP/RNBQK2R b KQkq - 0 1"
   );
   board.position(game.fen());
   window.setTimeout(function () {
-    makeBestMove('b');
+    makeBestMove("b");
   }, 250);
 });
-$('#sicilianDefenseBtn').on('click', function () {
+$("#sicilianDefenseBtn").on("click", function () {
   reset();
-  game.load('rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1');
+  game.load("rnbqkbnr/pp1ppppp/8/2p5/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 1");
   board.position(game.fen());
 });
-$('#startBtn').on('click', function () {
+$("#startBtn").on("click", function () {
   reset();
 });
 
-$('#compVsCompBtn').on('click', function () {
+$("#compVsCompBtn").on("click", function () {
   reset();
-  compVsComp('w');
+  compVsComp("w");
 });
-$('#resetBtn').on('click', function () {
-  $('#undoBtn').removeClass('disabled')
+$("#resetBtn").on("click", function () {
+  $("#undoBtn").removeClass("disabled");
   reset();
 });
 
@@ -509,11 +500,11 @@ function undo() {
   board.position(game.fen());
 }
 
-$('#undoBtn').on('click', function () {
+$("#undoBtn").on("click", function () {
   if (game.history().length >= 2) {
-    $board.find('.' + squareClass).removeClass('highlight-white');
-    $board.find('.' + squareClass).removeClass('highlight-black');
-    $board.find('.' + squareClass).removeClass('highlight-hint');
+    $board.find("." + squareClass).removeClass("highlight-white");
+    $board.find("." + squareClass).removeClass("highlight-black");
+    $board.find("." + squareClass).removeClass("highlight-hint");
     // Undo twice: Opponent's latest move, followed by player's latest move
     undo();
     window.setTimeout(function () {
@@ -523,11 +514,11 @@ $('#undoBtn').on('click', function () {
       }, 250);
     }, 250);
   } else {
-    alert('ჯერ გეთამაშა რამდენიმე სვლა...');
+    alert("ჯერ გეთამაშა რამდენიმე სვლა...");
   }
-  $('#undotBtn').off('click');
-  $('#undotBtn').unbind('click');
-  $('#undoBtn').addClass('disabled')
+  $("#undotBtn").off("click");
+  $("#undotBtn").unbind("click");
+  $("#undoBtn").addClass("disabled");
 });
 
 function redo() {
@@ -550,22 +541,20 @@ function redo() {
 //   }
 // });
 
-
-
-$('#showHint').change(function () {
+$("#showHint").change(function () {
   window.setTimeout(showHint, 250);
 });
 
 function showHint() {
-  var showHint = document.getElementById('showHint');
-  $board.find('.' + squareClass).removeClass('highlight-hint');
+  var showHint = document.getElementById("showHint");
+  $board.find("." + squareClass).removeClass("highlight-hint");
 
   // Show hint (best move for white)
   if (showHint.checked) {
-    var move = getBestMove(game, 'w', -globalSum)[0];
+    var move = getBestMove(game, "w", -globalSum)[0];
 
-    $board.find('.square-' + move.from).addClass('highlight-hint');
-    $board.find('.square-' + move.to).addClass('highlight-hint');
+    $board.find(".square-" + move.from).addClass("highlight-hint");
+    $board.find(".square-" + move.to).addClass("highlight-hint");
   }
 }
 
@@ -574,18 +563,18 @@ function showHint() {
  * https://chessboardjs.com/examples#5000
  */
 function removeGreySquares() {
-  $('#myBoard .square-55d63').css('background', '');
+  $("#myBoard .square-55d63").css("background", "");
 }
 
 function greySquare(square) {
-  var $square = $('#myBoard .square-' + square);
+  var $square = $("#myBoard .square-" + square);
 
   var background = whiteSquareGrey;
-  if ($square.hasClass('black-3c85d')) {
+  if ($square.hasClass("black-3c85d")) {
     background = blackSquareGrey;
   }
 
-  $square.css('background', background);
+  $square.css("background", background);
 }
 
 function onDragStart(source, piece) {
@@ -594,8 +583,8 @@ function onDragStart(source, piece) {
 
   // or if it's not that side's turn
   if (
-    (game.turn() === 'w' && piece.search(/^b/) !== -1) ||
-    (game.turn() === 'b' && piece.search(/^w/) !== -1)
+    (game.turn() === "w" && piece.search(/^b/) !== -1) ||
+    (game.turn() === "b" && piece.search(/^w/) !== -1)
   ) {
     return false;
   }
@@ -609,31 +598,31 @@ function onDrop(source, target) {
   var move = game.move({
     from: source,
     to: target,
-    promotion: 'q', // NOTE: always promote to a queen for example simplicity
+    promotion: "q", // NOTE: always promote to a queen for example simplicity
   });
 
   // Illegal move
-  if (move === null) return 'snapback';
+  if (move === null) return "snapback";
 
-  globalSum = evaluateBoard(game, move, globalSum, 'b');
+  globalSum = evaluateBoard(game, move, globalSum, "b");
   updateAdvantage();
 
   // Highlight latest move
-  $board.find('.' + squareClass).removeClass('highlight-white');
+  $board.find("." + squareClass).removeClass("highlight-white");
 
-  $board.find('.square-' + move.from).addClass('highlight-white');
+  $board.find(".square-" + move.from).addClass("highlight-white");
   squareToHighlight = move.to;
-  colorToHighlight = 'white';
+  colorToHighlight = "white";
 
   $board
-    .find('.square-' + squareToHighlight)
-    .addClass('highlight-' + colorToHighlight);
+    .find(".square-" + squareToHighlight)
+    .addClass("highlight-" + colorToHighlight);
 
-  if (!checkStatus('black'));
+  if (!checkStatus("black"));
   {
     // Make the best move for black
     window.setTimeout(function () {
-      makeBestMove('b');
+      makeBestMove("b");
       window.setTimeout(function () {
         showHint();
       }, 250);
