@@ -315,17 +315,17 @@ function minimax(game, depth, alpha, beta, isMaximizingPlayer, sum, color) {
 
 function checkStatus(color) {
   if (game.in_checkmate()) {
-    $('#status').html(`<b>Checkmate!</b> Oops, <b>${color}</b> lost.`);
+    $('#status').html(`<b>შამათი</b>`);
   } else if (game.insufficient_material()) {
-    $('#status').html(`It's a <b>draw!</b> (Insufficient Material)`);
+    $('#status').html(`ყაიმი`);
   } else if (game.in_threefold_repetition()) {
-    $('#status').html(`It's a <b>draw!</b> (Threefold Repetition)`);
+    $('#status').html(`ყაიმი`);
   } else if (game.in_stalemate()) {
-    $('#status').html(`It's a <b>draw!</b> (Stalemate)`);
+    $('#status').html(`ყაიმი, პატი`);
   } else if (game.in_draw()) {
-    $('#status').html(`It's a <b>draw!</b> (50-move Rule)`);
+    $('#status').html(`ყაიმი`);
   } else if (game.in_check()) {
-    $('#status').html(`Oops, <b>${color}</b> is in <b>check!</b>`);
+    $('#status').html(`<b>ქიში</b>`);
     return false;
   } else {
     $('#status').html(`არანაირი არაფერი`);
@@ -356,28 +356,28 @@ function updateAdvantage() {
  */
 function getBestMove(game, color, currSum) {
   positionCount = 0;
-  var randnumone = Array(3,3,3,4);
-  var randnumtwo = Array(2,3,3,3,3,4,4,4);
+  var randnumone = Array(1,2,3);
+  var randnumtwo = Array(2,3,3,3,3,3);
   if (movecount == 1) {
     var depth = Math.floor(Math.random() * 4) + 1;
   } else if(movecount > 1 && movecount < 18) {
-    var depth = 3
-  }else{
     var depth = randnumtwo[Math.floor(Math.random()*randnumtwo.length)];
+  }else{
+    var depth = 3;
   }
 
   var d = new Date().getTime();
   var [bestMove, bestMoveValue] = minimax(
     game,
     depth,
-    -10000,
-    10000,
+    Number.NEGATIVE_INFINITY,
+    Number.POSITIVE_INFINITY,
     true,
     currSum,
     color
   );
   var d2 = new Date().getTime();
-  var moveTime = d2 - d;
+  var moveTime = (d2 - d)/10;
   console.log(moveTime);
   var positionsPerS = (positionCount * 1000) / moveTime;
 
