@@ -129,7 +129,7 @@ body {
   background: white;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  width: 70%;
+  width: 75%;
   -webkit-box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
   -moz-box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
   box-shadow: 3px 3px 9px 4px rgba(230, 230, 230, 0.75) inset;
@@ -140,7 +140,7 @@ body {
   border: none;
   color: white;
   text-decoration: none;
-  width: 30%;
+  width: 25%;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   text-align: center;
@@ -155,4 +155,13 @@ input:focus {
   border: none;
   background: #284158;
   transition: 0.5s;
+}
+
+@media(max-width:768px){
+  .input .submitbtn{
+    width:30%;
+  }
+  .input .input1{
+    width:70%
+  }
 }
