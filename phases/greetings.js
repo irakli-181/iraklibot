@@ -1,5 +1,4 @@
-import * as fuzzysetJs from "../fuzzyset.js";
-export var list = fuzzysetJs.FuzzySet(
+export var greetings =
   [
     "გამარჯობა",
     "გამარჯობა ირაკლი",
@@ -12,6 +11,4 @@ export var list = fuzzysetJs.FuzzySet(
     "ჰეიი",
     "ზდაროვა",
     "ჰელლო",
-  ],
-  true
-);
+  ]

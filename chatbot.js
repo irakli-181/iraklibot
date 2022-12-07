@@ -1,5 +1,10 @@
-import * as greetingsJs from "./phases/greetings.js";
+import * as fuzzysetJs from "../fuzzyset.js";
+import { greetings } from "./phases/greetings.js";
+import { firstquestions } from "./phases/firstquestions.js";
+import { goodbyes } from "./phases/goodbyes.js";
 
+var full_list = [].concat.apply([], [greetings, firstquestions, goodbyes]);
+export var list = fuzzysetJs.FuzzySet(full_list, true);
 const $form = $("#addUserForm");
 $form.on("submit", submitHandler);
 
@@ -15,7 +20,6 @@ $(".input").bind("keydown", function (e) {
 
 function submitHandler(e) {
   e.preventDefault();
-
   $.ajax({
     url: "responses/main.php",
     type: "POST",
@@ -66,7 +70,8 @@ function chatBot() {
 
     //Output fuzzy text percentage for each word
     $(".fuzzytext").empty();
-    var test = greetingsJs.list.get(this.input);
+    // console.log(greetingsJS.list);
+    var test = list.get(this.input);
     $.each(test, function (key, value) {
       var tostring = String(value[0]);
       var trimnums = tostring.substring(0, 4);
